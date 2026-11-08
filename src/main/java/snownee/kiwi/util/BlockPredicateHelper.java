@@ -5,8 +5,8 @@ import java.util.function.Supplier;
 
 import org.jspecify.annotations.Nullable;
 
-import net.minecraft.advancements.criterion.BlockPredicate;
-import net.minecraft.advancements.criterion.DataComponentMatchers;
+import net.minecraft.advancements.predicates.BlockPredicate;
+import net.minecraft.advancements.predicates.DataComponentMatchers;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -30,7 +30,7 @@ public class BlockPredicateHelper {
 		}
 		BlockEntity be = predicate.nbt().isPresent() || !predicate.components().isEmpty() ? beGetter.get() : null;
 		if (predicate.nbt().isPresent()) {
-			if (be == null || be.getLevel() == null || BlockPredicate.matchesBlockEntity(
+			if (be == null || be.getLevel() == null || BlockPredicate.matchesBlockEntityData(
 					be.getLevel(),
 					be,
 					predicate.nbt().orElseThrow())) {
